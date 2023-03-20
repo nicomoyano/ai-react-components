@@ -74,7 +74,7 @@ function App() {
         <div className="flex flex-col items-center gap-4">
           <img src={reactLogo} className="w-24 h-24" />
           <h1 className="text-6xl max-w-6xl text-center font-extrabold text-cyan-400">
-            React Components with AI
+            React components with AI
           </h1>
         </div>
         <div className="w-full max-w-2xl mx-auto px-4">
