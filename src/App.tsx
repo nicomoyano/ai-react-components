@@ -73,13 +73,13 @@ function App() {
       <main className="flex-1 flex flex-col justify-between max-w-4xl m-12">
         <div className="flex flex-col items-center gap-4">
           <img src={reactLogo} className="w-24 h-24" />
-          <h1 className="text-6xl max-w-6xl text-center font-extrabold  text-cyan-400">
+          <h1 className="text-6xl max-w-6xl text-center font-extrabold text-cyan-400">
             React Components with AI
           </h1>
         </div>
         <div className="w-full max-w-2xl mx-auto px-4">
           <textarea
-            className="block w-full px-4 py-2 mb-4 bg-gray-700 border-gray-700 text-white placeholder:text-gray-400  resize-none border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+            className="block w-full mt-8 lg:mt-2 px-4 py-2 mb-4 bg-gray-700 border-gray-700 text-white placeholder:text-gray-400  resize-none border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
             placeholder="Blue button with a text that says 'Click me'"
             value={prompt}
             onChange={handleChange}
