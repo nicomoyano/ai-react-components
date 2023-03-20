@@ -69,7 +69,7 @@ function App() {
   };
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-center justify-center gap-16 bg-black">
+    <div className="w-screen min-h-screen flex flex-col items-center justify-center gap-16 bg-gray-900">
       <main className="flex-1 flex flex-col justify-between max-w-4xl m-12">
         <div className="flex flex-col items-center gap-4">
           <img src={reactLogo} className="w-24 h-24" />
@@ -164,7 +164,7 @@ function App() {
           </div>
         )}
       </main>
-      <footer className="w-full flex-shrink flex items-center justify-center bg-black text-white h-12 tracking-wide text-base font-semibold">
+      <footer className="w-full flex-shrink flex items-center justify-center bg-gray-800 text-white h-12 tracking-wide text-base font-semibold">
         <span style={{ fontFamily: 'Manrope' }}>NICO MOYANO 2023</span>
       </footer>
     </div>
