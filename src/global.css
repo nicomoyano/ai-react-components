@@ -4,5 +4,5 @@
 
 @font-face {
   font-family: 'Manrope';
-  src: url('../public/Manrope-Bold.ttf') format('truetype');
+  src: url('/Manrope-Bold.ttf') format('truetype');
 }

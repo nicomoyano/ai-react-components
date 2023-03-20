@@ -164,7 +164,7 @@ function App() {
           </div>
         )}
       </main>
-      <footer className="w-full flex-shrink flex items-center justify-center bg-white text-black h-12 tracking-wide text-base font-semibold">
+      <footer className="w-full flex-shrink flex items-center justify-center bg-black text-white h-12 tracking-wide text-base font-semibold">
         <span style={{ fontFamily: 'Manrope' }}>NICO MOYANO 2023</span>
       </footer>
     </div>
