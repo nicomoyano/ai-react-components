@@ -1,6 +1,6 @@
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { useState } from 'react';
-import { generateComponent } from './api';
+import { generateComponent } from '../api';
 import reactLogo from '/react.svg';
 
 const defaultComponent = `import React from 'react';
