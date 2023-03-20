@@ -131,7 +131,7 @@ function App() {
           </div>
         </div>
         {code && (
-          <div className="border-white border-8 mt-8 lg:mt-2">
+          <div className="border-white border-8 mt-12 lg:mt-2">
             <Sandpack
               customSetup={{
                 dependencies: {
