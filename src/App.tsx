@@ -8,7 +8,7 @@ const defaultComponent = `import React from 'react';
 export const App = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">Hola mundo!</h1>
+      <h1 className="text-4xl font-bold">Hello, World!</h1>
     </div>
   );
 };
@@ -21,7 +21,7 @@ function App() {
   const [prompt, setPrompt] = useState('');
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [template, setTemplate] = useState('react-ts');
   const [code, setCode] = useState(defaultComponent);
@@ -30,7 +30,9 @@ function App() {
     const start = response.indexOf('import');
 
     if (start === -1) {
-      setError(true);
+      setErrorMessage(
+        'There was an error generating your component. Please try again.'
+      );
       setCode(defaultComponent);
       return;
     }
@@ -53,29 +55,32 @@ function App() {
   };
 
   const handleSubmit = () => {
-    setError(false);
+    setErrorMessage('');
+    if (prompt.trim() === '') {
+      setErrorMessage('Please enter a prompt');
+      return;
+    }
     setLoading(true);
     setTemplate(useTs ? 'react-ts' : 'react');
     generateComponent(useTs, prompt.trim()).then((data: string) => {
       getCode(data);
       setLoading(false);
-      setPrompt('');
     });
   };
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-center justify-center gap-16 bg-white">
+    <div className="w-screen min-h-screen flex flex-col items-center justify-center gap-16 bg-black">
       <main className="flex-1 flex flex-col justify-between max-w-4xl m-12">
         <div className="flex flex-col items-center gap-4">
           <img src={reactLogo} className="w-24 h-24" />
-          <h1 className="text-6xl max-w-6xl text-center font-bold text-black">
-            Genera componentes con IA
+          <h1 className="text-6xl max-w-6xl text-center font-extrabold  text-cyan-400">
+            React Components with AI
           </h1>
         </div>
         <div className="w-full max-w-2xl mx-auto px-4">
           <textarea
-            className="block w-full px-4 py-2 mb-4 text-black placeholder:text-gray-500  resize-none border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-            placeholder="Escribe aquí lo que necesitas"
+            className="block w-full px-4 py-2 mb-4 bg-gray-700 border-gray-700 text-white placeholder:text-gray-400  resize-none border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+            placeholder="Blue button with a text that says 'Click me'"
             value={prompt}
             onChange={handleChange}
             style={{ minHeight: '1rem' }}
@@ -97,17 +102,17 @@ function App() {
               onChange={() => {
                 setUseTs(!useTs);
               }}
-              className="w-4 h-4 text-cyan-600 bg-gray-100 border-gray-300 rounded"
+              className="w-4 h-4 bg-gray-900 accent-cyan-400 text-white"
             />
             <label
               htmlFor="default-checkbox"
-              className="ml-2 text-sm font-medium text-gray-900"
+              className="ml-2 text-sm font-medium text-white"
             >
-              TypeScript
+              Use TypeScript?
             </label>
           </div>
           <button
-            className="block w-full px-4 py-2  bg-cyan-500 rounded-md focus:outline-none hover:bg-cyan-700 disabled:bg-cyan-700"
+            className="block w-full px-4 py-2  bg-cyan-600 rounded-md focus:outline-none hover:bg-cyan-700 disabled:bg-cyan-700"
             onClick={handleSubmit}
             disabled={loading}
           >
@@ -116,15 +121,13 @@ function App() {
                 loading && 'animate-pulse'
               }`}
             >
-              {loading ? 'Generando...' : 'Generar'}
+              {loading ? 'Generating component...' : 'Generate component'}
             </span>
           </button>
           <div
-            className={`mt-4 text-red-500 text-center e ${
-              !error && 'invisible'
-            }`}
+            className={`mt-4 font-bold text-lg text-red-500 text-center h-4`}
           >
-            No se pudo generar el componente
+            {errorMessage}
           </div>
         </div>
         {code && (
@@ -161,7 +164,7 @@ function App() {
           </div>
         )}
       </main>
-      <footer className="w-full flex-shrink flex items-center justify-center bg-black text-white h-12 tracking-widest text-lg">
+      <footer className="w-full flex-shrink flex items-center justify-center bg-white text-black h-12 tracking-wide text-base font-semibold">
         <span style={{ fontFamily: 'Manrope' }}>NICO MOYANO 2023</span>
       </footer>
     </div>
