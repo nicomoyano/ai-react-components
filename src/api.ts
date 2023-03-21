@@ -36,6 +36,6 @@ Dont import any extra libraries apart from Tailwind and Font Awesome.
     body: JSON.stringify(body),
   }).then((res) => res.json());
 
-  const response = completion?.choices[0].message?.content ?? '';
-  return response;
+  const response = completion?.choices[0].message?.content;
+  return response ?? '';
 };
