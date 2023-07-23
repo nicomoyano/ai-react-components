@@ -1,13 +1,8 @@
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
-export const generateComponent = async (
-  useTs: boolean,
-  prompt: string
-): Promise<string> => {
-  const language = useTs ? 'Typescript' : 'Javascript';
-
+export const generateComponent = async (prompt: string): Promise<string> => {
   const systemPrompt = `
-You are a React ${language} components generator that functions EXACTLY as I tell you. 
+You are a React TypeScript components generator that functions EXACTLY as I tell you. 
 The user will give you the instructions and you will return the file App.tsx or App.js with the App function and the component you created, with NO EXPLANATION WHATSOEVER. 
 ONLY THE CODE. 
 The component ONLY uses Tailwind for styling. 

@@ -17,13 +17,11 @@ export default App;
 `;
 
 function App() {
-  const [useTs, setUseTs] = useState(true);
   const [prompt, setPrompt] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [template, setTemplate] = useState('react-ts');
   const [code, setCode] = useState(defaultComponent);
 
   const getCode = (response: string) => {
@@ -61,8 +59,7 @@ function App() {
       return;
     }
     setLoading(true);
-    setTemplate(useTs ? 'react-ts' : 'react');
-    generateComponent(useTs, prompt.trim()).then((data: string) => {
+    generateComponent(prompt.trim()).then((data: string) => {
       getCode(data);
       setLoading(false);
     });
@@ -93,24 +90,6 @@ function App() {
               }
             }}
           />
-          <div className="flex items-center mb-4">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              checked={useTs}
-              disabled={loading}
-              onChange={() => {
-                setUseTs(!useTs);
-              }}
-              className="w-4 h-4 bg-gray-900 accent-cyan-400 text-white"
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ml-2 text-sm font-medium text-white"
-            >
-              Use TypeScript?
-            </label>
-          </div>
           <button
             className="block w-full px-4 py-2  bg-cyan-600 rounded-md focus:outline-none hover:bg-cyan-700 disabled:bg-cyan-700"
             onClick={handleSubmit}
@@ -145,20 +124,12 @@ function App() {
                 externalResources: ['https://cdn.tailwindcss.com'],
                 wrapContent: true,
               }}
-              files={
-                template === 'react-ts'
-                  ? {
-                      'App.tsx': {
-                        code,
-                      },
-                    }
-                  : {
-                      'App.js': {
-                        code,
-                      },
-                    }
-              }
-              template={template as any}
+              files={{
+                'App.tsx': {
+                  code,
+                },
+              }}
+              template="react-ts"
               theme="dark"
             />
           </div>
